@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aegis Medicas ERP - Portal Login</title>
+    <!-- Linking CSS stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: radial-gradient(circle at 10% 20%, var(--bg-secondary) 0%, var(--bg-primary) 90%);
+        }
+        
+        .login-wrapper {
+            width: 100%;
+            max-width: 440px;
+            padding: 16px;
+        }
+
+        .login-card {
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+        }
+
+        .login-header-top {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .login-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .login-logo {
+            width: 50px;
+            height: 50px;
+            color: var(--primary);
+        }
+
+        .login-brand h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+
+        .login-brand p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .btn-login {
+            margin-top: 10px;
+            width: 100%;
+            height: 48px;
+        }
+
+        .hint-box {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: rgba(148, 163, 184, 0.05);
+            padding: 12px;
+            border-radius: var(--radius-md);
+            border: 1px dashed var(--glass-border);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-wrapper">
+        <div class="card glass-panel login-card slide-up">
+            <!-- Theme Toggler -->
+            <div class="login-header-top">
+                <button id="theme-toggle" class="header-icon-btn" title="Toggle Dark/Light Mode">
+                    <svg id="theme-icon" class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Brand Info -->
+            <div class="login-brand">
+                <svg class="login-logo" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                <h2>Aegis Medicas</h2>
+                <p>Advanced Pharmacy ERP & POS Terminal</p>
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <div class="input-icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <input type="text" id="username" class="input-field" placeholder="Enter username" required value="admin">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        <input type="password" id="password" class="input-field" placeholder="Enter password" required value="admin123">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Role Authorization</label>
+                    <select id="role" class="input-field">
+                        <option value="Admin">System Administrator</option>
+                        <option value="Pharmacist">Chief Pharmacist</option>
+                        <option value="Cashier">POS Billing Cashier</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-login ripple">
+                    <span id="btn-text">Sign In Securely</span>
+                </button>
+            </form>
+
+            <div class="hint-box">
+                <strong>Quick Access Hint:</strong><br>
+                User: <code>admin</code> / <code>pharmacist</code> / <code>cashier</code><br>
+                Pass: <code>any password</code> (length &ge; 4)
+            </div>
+        </div>
+    </div>
+
+    <!-- Script imports -->
+    <script src="js/storage.js"></script>
+    <script src="js/utils.js"></script>
+    <script>
+        // Theme Sync logic
+        const themeBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        let currentTheme = localStorage.getItem('erp_theme') || 'light';
+        
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon();
+
+        // Load custom company name if set in storage settings
+        const settings = AppStorage.get('settings');
+        if (settings && settings.companyName) {
+            const brandHeader = document.querySelector('.login-brand h2');
+            if (brandHeader) brandHeader.textContent = settings.companyName;
+            document.title = `${settings.companyName} - Portal Login`;
+        }
+
+        themeBtn.addEventListener('click', () => {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('erp_theme', currentTheme);
+            updateThemeIcon();
+        });
+
+        function updateThemeIcon() {
+            if (currentTheme === 'dark') {
+                themeIcon.innerHTML = `
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                `;
+            } else {
+                themeIcon.innerHTML = `
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                `;
+            }
+        }
+
+        // Login Submit Handling
+        const loginForm = document.getElementById('login-form');
+        const btnText = document.getElementById('btn-text');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const usernameVal = document.getElementById('username').value.trim();
+            const passwordVal = document.getElementById('password').value.trim();
+            const roleVal = document.getElementById('role').value;
+
+            // Password length check
+            if (passwordVal.length < 4) {
+                Toast.error("Password must be at least 4 characters long.");
+                return;
+            }
+
+            // Simulate authenticating
+            btnText.innerHTML = `<span class="spinner"></span> Authenticating...`;
+            document.querySelector('.btn-login').disabled = true;
+
+            setTimeout(() => {
+                const employees = AppStorage.getAll('employees');
+                // Check if user is seeded or just assign dummy name based on username
+                let empName = usernameVal.charAt(0).toUpperCase() + usernameVal.slice(1);
+                
+                // Set active user session
+                const activeUser = {
+                    username: usernameVal,
+                    name: empName,
+                    role: roleVal,
+                    loginTime: new Date().toISOString()
+                };
+
+                AppStorage.set('erp_active_user', activeUser);
+                
+                // Show success and redirect
+                Toast.success(`Welcome back, ${empName}! Directing to workspace...`);
+                
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1000);
+
+            }, 1200);
+        });
+    </script>
+</body>
+</html>

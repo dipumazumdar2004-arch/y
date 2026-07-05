@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aegis Medicas ERP - Redirecting...</title>
+    <style>
+        body {
+            background-color: #020617;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+            color: #fff;
+        }
+        .loader-box {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader-box">
+        <div class="spinner"></div>
+        <div>Initializing Aegis Medicas ERP...</div>
+    </div>
+
+    <script>
+        // Check session in LocalStorage
+        setTimeout(() => {
+            const activeUser = localStorage.getItem('erp_active_user');
+            if (activeUser) {
+                window.location.href = 'dashboard.html';
+            } else {
+                window.location.href = 'login.html';
+            }
+        }, 800); // Quick delay to showcase smooth intro
+    </script>
+</body>
+</html>
